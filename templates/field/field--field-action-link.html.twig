@@ -1,0 +1,10 @@
+{% extends "field.html.twig" %}
+{%
+  set classes = [
+    'button',
+    'is-primary',
+    'is-outlined',
+    'is-medium'
+  ]
+%}
+{% set attributes = attributes.addClass(classes) %}
