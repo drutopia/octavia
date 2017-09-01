@@ -1,0 +1,65 @@
+{% extends "@stable/views/views-view-unformatted.html.twig" %}
+{#
+/**
+ * @file
+ * Default theme implementation for an unformatted view display.
+ *
+ * If the display is configured to use Display Suite's alternating view modes,
+ * column classes are added appropriate to the view modes.
+ *
+ * @see http://bulma.io/documentation/columns/basics
+ *
+ * @ingroup themeable
+ */
+#}
+{% set display = view.getDisplay().getPluginId() %}
+{% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
+{# Only apply to page displays with a selected view mode. #}
+{% if (display == 'page') and view_mode %}
+  {# Determine if we use the alternating view modes. #}
+  {% set ds_alternating = (view.rowPlugin.options['alternating_fieldset']['alternating'] ?? false) %}
+  {% set ds_allpages = (view.rowPlugin.options['alternating_fieldset']['allpages'] ?? false) %}
+  {% set is_paged = view.getCurrentPage() ? true : false %}
+  {% set use_alternating_view_mode = (ds_alternating and not (ds_allpages and is_paged)) %}
+  {% for row in rows %}
+    {# Default to full width. #}
+    {%
+      set row_classes = [
+        'column',
+        'is-12'
+      ]
+    %}
+    {% if use_alternating_view_mode %}
+      {% set view_mode = (view.rowPlugin.options['alternating_fieldset']['item_' ~ loop.index0] ?? view_mode) %}
+    {% endif %}
+    {% if view_mode == 'card' %}
+      {%
+        set row_classes = [
+          'column',
+          'is-one-quarter-widescreen',
+          'is-half-desktop',
+          'is-12-tablet'
+        ]
+      %}
+    {% elseif view_mode == 'media' %}
+      {%
+        set row_classes = [
+          'column',
+          'is-half-widescreen',
+          'is-12-desktop',
+          'is-12-tablet'
+        ]
+      %}
+    {% elseif view_mode == 'teaser' %}
+      {%
+        set row_classes = [
+          'column',
+          'is-8-widescreen',
+          'is-10-desktop',
+          'is-12-tablet'
+        ]
+      %}
+    {% endif %}
+    {% set row = row|merge({ 'attributes' : row.attributes.addClass(row_classes) }) %}
+  {% endfor %}
+{% endif %}

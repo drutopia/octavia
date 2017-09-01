@@ -1,0 +1,18 @@
+{% extends "@stable/views/views-view.html.twig" %}
+{% set style = view.getStyle().getPluginId() %}
+{% set display = view.getDisplay().getPluginId() %}
+{% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
+{#
+  Only apply to page displays with a selected view mode.
+#}
+{% if (style == 'default') and (display == 'page') and view_mode %}
+  {# Add columns classes to the wrapper. #}
+  {%
+    set classes = [
+      'columns',
+      'is-multiline',
+      'is-centered'
+    ]
+  %}
+  {% set attributes = attributes.addClass(classes) %}
+{% endif %}
