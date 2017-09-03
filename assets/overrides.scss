@@ -1,2 +1,11 @@
 @charset "UTF-8";
 
+.column {
+  &.views-row {
+    display: flex;
+    flex-direction: column;
+    > * {
+      flex: 1;
+    }
+  }
+}

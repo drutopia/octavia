@@ -1,3 +1,7 @@
-
+.column.views-row {
+  display: flex;
+  flex-direction: column; }
+  .column.views-row > * {
+    flex: 1; }
 
 /*# sourceMappingURL=overrides.css.map */
