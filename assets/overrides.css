@@ -4,4 +4,9 @@
   .column.views-row > * {
     flex: 1; }
 
+.tag.is-primary a {
+  color: #fff; }
+  .tag.is-primary a:hover {
+    color: #000; }
+
 /*# sourceMappingURL=overrides.css.map */

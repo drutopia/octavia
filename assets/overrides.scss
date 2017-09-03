@@ -9,3 +9,14 @@
     }
   }
 }
+
+.tag {
+  &.is-primary {
+    a {
+      color: #fff;
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
