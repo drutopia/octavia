@@ -12,6 +12,60 @@
  * @ingroup themeable
  */
 #}
+{# Default to full width. #}
+{%
+  set view_modes = {
+    '__default': {
+      'row_classes': [
+        'column',
+        'is-12',
+      ],
+      'is_grouped': false,
+      'group_limit': null,
+    },
+    'box': {
+      'row_classes': [
+        'column',
+        'is-12-tablet',
+        'is-half-desktop',
+        'is-one-quarter-widescreen',
+      ],
+      'is_grouped': true,
+      'group_limit': 3,
+    },
+    'card': {
+      'row_classes': [
+        'column',
+        'is-12-tablet',
+        'is-half-desktop',
+        'is-one-quarter-widescreen',
+        'is-full-height',
+      ],
+      'is_grouped': false,
+      'group_limit': null,
+    },
+    'media': {
+      'row_classes': [
+        'column',
+        'is-12-tablet',
+        'is-12-desktop',
+        'is-half-widescreen',
+      ],
+      'is_grouped': false,
+      'group_limit': null,
+    },
+    'teaser': {
+      'row_classes': [
+        'column',
+        'is-12-tablet',
+        'is-10-desktop',
+        'is-8-widescreen',
+      ],
+      'is_grouped': false,
+      'group_limit': null,
+    },
+  }
+%}
 {% set display = view.getDisplay().getPluginId() %}
 {% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
 {# Only apply to page displays with a selected view mode. #}
@@ -21,45 +75,50 @@
   {% set ds_allpages = (view.rowPlugin.options['alternating_fieldset']['allpages'] ?? false) %}
   {% set is_paged = view.getCurrentPage() ? true : false %}
   {% set use_alternating_view_mode = (ds_alternating and not (ds_allpages and is_paged)) %}
-  {% for row in rows %}
-    {# Default to full width. #}
-    {%
-      set row_classes = [
-        'column',
-        'is-12'
-      ]
-    %}
+  {% set parent_row = null %}
+  {% set consecutive_count = 0 %}
+  {% set previous_view_mode = null %}
+  {% set grouped_rows = {} %}
+  {% for index, row in rows %}
     {% if use_alternating_view_mode %}
       {% set view_mode = (view.rowPlugin.options['alternating_fieldset']['item_' ~ loop.index0] ?? view_mode) %}
     {% endif %}
-    {% if view_mode == 'card' %}
-      {%
-        set row_classes = [
-          'column',
-          'is-12-tablet',
-          'is-half-desktop',
-          'is-one-quarter-widescreen',
-        ]
-      %}
-    {% elseif view_mode == 'media' %}
-      {%
-        set row_classes = [
-          'column',
-          'is-12-tablet',
-          'is-12-desktop',
-          'is-half-widescreen',
-        ]
-      %}
-    {% elseif view_mode == 'teaser' %}
-      {%
-        set row_classes = [
-          'column',
-          'is-12-tablet',
-          'is-10-desktop',
-          'is-8-widescreen',
-        ]
-      %}
+    {#
+      Add the previously set parent_row if:
+      - we've switched view modes or
+      - we've reached the group_limit.
+    #}
+    {% set group_limit = view_modes[previous_view_mode]['group_limit'] ?? null %}
+    {% set row_classes = view_modes[view_mode]['row_classes'] ?? [] %}
+    {% if parent_row and ((view_mode != previous_view_mode) or (group_limit and (group_limit == consecutive_count)))%}
+      {% if consecutive_count > 1 %}
+        {% set parent_row = parent_row|merge({ 'attributes': parent_row.attributes.addClass('has-grouped-items') }) %}
+      {% endif %}
+      {% set grouped_rows = grouped_rows|merge([parent_row]) %}
+      {% set parent_row = null %}
+      {% set consecutive_count = 0 %}
     {% endif %}
-    {% set row = row|merge({ 'attributes' : row.attributes.addClass(row_classes) }) %}
+    {% set is_grouped = view_modes[view_mode]['is_grouped'] ?? false %}
+    {% if is_grouped %}
+      {% if consecutive_count == 0 %}
+        {%
+          set parent_row = {
+            'content': [row.content],
+            'attributes': row.attributes.addClass(row_classes),
+          }
+        %}
+        {% set consecutive_count = 1 %}
+      {% else %}
+        {% set parent_row = parent_row|merge({ 'content': parent_row.content|merge([row.content]) }) %}
+        {% if previous_view_mode == view_mode %}
+          {% set consecutive_count = (consecutive_count + 1) %}
+        {% endif %}
+      {% endif %}
+    {% else %}
+      {% set row = row|merge({ 'attributes': row.attributes.addClass(row_classes) }) %}
+      {% set grouped_rows = grouped_rows|merge([row]) %}
+    {% endif %}
+    {% set previous_view_mode = view_mode %}
   {% endfor %}
+  {% set rows = grouped_rows %}
 {% endif %}
