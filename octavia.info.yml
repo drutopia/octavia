@@ -28,3 +28,14 @@ regions:
 
 libraries:
   - octavia/global
+
+# This section is used by the contrib module, Component Libraries. It allows you
+# to reference .twig files in your sass/ directory by using the Twig namespace:
+# @octavia
+# See https://www.drupal.org/project/components for more information.
+component-libraries:
+  octavia:
+    paths:
+      - src/components
+      - src/layout
+      - src/templates

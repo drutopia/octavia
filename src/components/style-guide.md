@@ -1,20 +1,12 @@
-# Octavia
-Octavia is a subtheme of base theme Bulma for Drupal. 
-It has Bulma CSS framework, Sass, and Font Awesome built in.
+# Octavia Style Guide
+
+This application is a living style guide, generated from KSS documented styles.
 
 ## Getting Started
-
-### Browser Support
-Autoprefixer & Babel is set to support:
-
-* IE >= 9
-* Last 3 versions of modern browsers.
-
-These can be updated at any time within the `package.json`.
-
-### Run the following commands from the theme directory
 If you haven't yet, install nvm:
 https://github.com/creationix/nvm
+
+### Run the following commands from the theme directory
 
 #### Use the right version of node with:
 `nvm use`
