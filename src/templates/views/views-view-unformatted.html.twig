@@ -74,7 +74,7 @@
   {% set ds_alternating = (view.rowPlugin.options['alternating_fieldset']['alternating'] ?? false) %}
   {% set ds_allpages = (view.rowPlugin.options['alternating_fieldset']['allpages'] ?? false) %}
   {% set is_paged = view.getCurrentPage() ? true : false %}
-  {% set use_alternating_view_mode = (ds_alternating and not (ds_allpages and is_paged)) %}
+  {% set use_alternating_view_mode = (ds_alternating and (ds_allpages or not is_paged)) %}
   {% set parent_row = null %}
   {% set consecutive_count = 0 %}
   {% set previous_view_mode = null %}
