@@ -29,22 +29,42 @@ _This command will look at your `.nvmrc` file and use the version node.js specif
 
 _This command looks at `package.json` and installs all the npm dependencies specified in it.  Some of the dependencies include gulp, autoprefixer, gulp-sass and others._
 
-#### Runs default task
-`npm run build`
+#### Gulp tasks
 
-_This will run whatever the default task is._
+Provided by default are seven npm scripts that point to Gulp tasks. We run gulp through npm scripts so the build tools can change without the user ever knowing.
 
-#### Compiles Sass
-`npm run compile`
+1. Run the default build task (gulp in this instance) and everything in it.
+  This is the equivalent to running `gulp` on the command line with Gulp installed globally.
+  ```
+  npm run build
+  ```
 
-_This will perform a one-time Sass compilation._
+2. Compile Sass and JS.
+  ```
+  npm run compile
+  ```
 
-#### Runs the watch command
-`npm run watch`
+3. Watch files and run tasks when they change.
+  ```
+  npm run watch
+  ```
 
-_This is ideal when you are doing a lot of Sass changes and you want to make sure every time a change is saved it automatically gets compiled to CSS_
+4. Compress png and svg assets.
+  ```
+  npm run compress
+  ```
 
-#### Cleans complied directory
-`npm run clean`
+5. Build the KSS Style guide.
+  ```
+  npm run styleguide
+  ```
 
-_This will perform a one-time deletion of all compiled files within the dist/ directory._
+6. Lint Sass and JS files.
+  ```
+  npm run lint
+  ```
+
+7. Delete compiled Sass, JS and style guide files from the /dist directory.
+  ```
+  npm run clean
+  ```
