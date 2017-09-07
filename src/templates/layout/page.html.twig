@@ -1,15 +1,14 @@
 {% extends "@bulma/system/page.html.twig" %}
+{#
+  Limit the main content column to a max of 10 units at widescreen and above.
+  @see system/page.html.twig in the Bulma theme.
+#}
 {%
   set page = page|merge({
     'content_attributes': create_attribute().addClass([
       'main-content',
       'column',
       'is-10-widescreen',
-    ]),
-    'sidebar_first_attributes': create_attribute().addClass([
-      'sidebar-first',
-      'column',
-      'is-2',
     ]),
   })
 %}
