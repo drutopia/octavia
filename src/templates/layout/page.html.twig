@@ -1,0 +1,15 @@
+{% extends "@bulma/system/page.html.twig" %}
+{%
+  set page = page|merge({
+    'content_attributes': create_attribute().addClass([
+      'main-content',
+      'column',
+      'is-10-widescreen',
+    ]),
+    'sidebar_first_attributes': create_attribute().addClass([
+      'sidebar-first',
+      'column',
+      'is-2',
+    ]),
+  })
+%}
