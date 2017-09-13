@@ -1,6 +1,5 @@
 {% extends "@ds/ds-3col-stacked.html.twig" %}
 {% set attributes = attributes.addClass('columns is-multiline') %}
-{% set attributes = attributes.removeClass('ds-3col-stacked') %}
 {%
   set header_classes = [
     'column',
@@ -8,7 +7,6 @@
   ]
 %}
 {% set header_attributes = header_attributes.addClass(header_classes) %}
-{% set header_attributes = header_attributes.removeClass('group-header') %}
 {%
   set left_classes = [
     'column',
@@ -16,7 +14,6 @@
   ]
 %}
 {% set left_attributes = left_attributes.addClass(left_classes) %}
-{% set left_attributes = left_attributes.removeClass('group-left') %}
 {%
   set middle_classes = [
     'column',
@@ -24,7 +21,6 @@
   ]
 %}
 {% set middle_attributes = middle_attributes.addClass(middle_classes) %}
-{% set middle_attributes = middle_attributes.removeClass('group-middle') %}
 {%
   set right_classes = [
     'column',
@@ -32,8 +28,7 @@
   ]
 %}
 {% set right_attributes = right_attributes.addClass(right_classes) %}
-{% set right_attributes = right_attributes.removeClass('group-right') %}
-{% set middle_attributes = middle_attributes.removeClass('group-middle').addClass(middle_classes) %}
+{% set middle_attributes = middle_attributes.addClass(middle_classes) %}
 {%
   set footer_classes = [
     'column',
@@ -41,4 +36,3 @@
   ]
 %}
 {% set footer_attributes = footer_attributes.addClass(footer_classes) %}
-{% set footer_attributes = footer_attributes.removeClass('group-footer') %}
