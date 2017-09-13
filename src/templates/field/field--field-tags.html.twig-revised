@@ -1,0 +1,31 @@
+{% extends "@bulma/field/field.html.twig" %}
+{% set attributes = attributes.addClass('tags') %}
+{%
+  set content_classes = [
+    'tag',
+    'is-primary',
+  ]
+%}
+{# Merge in classes to content items. #}
+{% set processed_items = [] %}
+{% for delta, item in items %}
+  {% if item.content['#options']['attributes'] is defined %}
+  {% set item_classes = item.content['#options']['attributes']['class'] ?? []|merge(content_classes) %}
+    {%
+      set item = item|merge({
+        'content': item.content|merge({
+          '#options': item.content['#options']|merge({
+            'attributes': item.content['#options']['attributes']|merge({
+              'class': item_classes,
+            })
+          })
+        })
+      })
+    %}
+  {% endif %}
+  {% set processed_items = processed_items|merge([item]) %}
+{% endfor %}
+{% set items = processed_items %}
+{% block item %}
+{{ 'test' }}
+{% endblock item %}
