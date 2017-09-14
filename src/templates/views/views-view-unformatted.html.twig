@@ -12,9 +12,11 @@
  * @ingroup themeable
  */
 #}
-{# Default to full width. #}
+{#
+  View rows can be configured to have default classes per view mode.
+#}
 {%
-  set view_modes = {
+  set default_view_modes = {
     '__default': {
       'row_classes': [
         'column',
@@ -66,6 +68,7 @@
     },
   }
 %}
+{% set view_modes = view_modes ? default_view_modes|merge(view_modes) : default_view_modes %}
 {% set display = view.getDisplay().getPluginId() %}
 {% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
 {# Only apply to page displays with a selected view mode. #}
