@@ -10,8 +10,3 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1; }
-
-.tag.is-primary a {
-  color: #fff; }
-  .tag.is-primary a:hover {
-    color: #000; }
