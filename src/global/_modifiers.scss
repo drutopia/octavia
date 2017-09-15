@@ -1,0 +1,11 @@
+.has-background-image {
+  background: no-repeat center center;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.has-text-shadow {
+  text-shadow: 0.1em 0.1em 0.03em #2a3439;
+}

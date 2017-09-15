@@ -23,7 +23,9 @@
  */
 #}
 {#
-  View rows can be configured to have default classes per view mode.
+  View rows can be configured to have default classes per view mode. A child
+  template may define view_modes, which will be merged with the
+  default_view_modes below.
 #}
 {%
   set default_view_modes = {

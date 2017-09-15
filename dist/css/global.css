@@ -1,3 +1,11 @@
+.has-background-image {
+  background: no-repeat center center;
+  background-attachment: scroll;
+  background-size: cover; }
+
+.has-text-shadow {
+  text-shadow: 0.1em 0.1em 0.03em #2a3439; }
+
 .column.views-row {
   display: -webkit-box;
   display: -ms-flexbox;
