@@ -1,4 +1,3 @@
-{% extends "@stable/views/views-view-unformatted.html.twig" %}
 {#
 /**
  * @file
@@ -98,8 +97,18 @@
 %}
 {% set view_modes = view_modes ? default_view_modes|merge(view_modes) : default_view_modes %}
 {% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
+{# Add classes to the title, which is often the grouping field title. #}
+{%
+  set title_classes = [
+    'title',
+    'is-size-4',
+  ]
+%}
+{% set title_attributes = create_attribute().addClass(title_classes) %}
 {# Only apply to page displays with a selected view mode. #}
 {% if (not default_row_class) and view_mode %}
+  {# Make the title a full-width column. #}
+  {% set title_attributes = title_attributes.addClass(view_modes.__default.row_classes) %}
   {# Determine if we use the alternating view modes. #}
   {% set ds_alternating = (view.rowPlugin.options['alternating_fieldset']['alternating'] ?? false) %}
   {% set ds_allpages = (view.rowPlugin.options['alternating_fieldset']['allpages'] ?? false) %}
@@ -157,3 +166,11 @@
   {% endfor %}
   {% set rows = grouped_rows %}
 {% endif %}
+{% if title %}
+  <h3{{ title_attributes }}>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  <div{{ row.attributes }}>
+    {{ row.content }}
+  </div>
+{% endfor %}
