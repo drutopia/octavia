@@ -100,8 +100,10 @@
 {# Add classes to the title, which is often the grouping field title. #}
 {%
   set title_classes = [
-    'title',
+    'subtitle',
     'is-size-4',
+    'is-uppercase',
+    'has-text-centered',
   ]
 %}
 {% set title_attributes = create_attribute().addClass(title_classes) %}
