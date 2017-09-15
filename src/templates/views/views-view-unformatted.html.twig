@@ -56,6 +56,16 @@
       'is_grouped': true,
       'group_limit': 4,
     },
+    'small_card': {
+      'row_classes': [
+        'column',
+        'is-12-tablet',
+        'is-3-desktop',
+        'is-2-widescreen',
+      ],
+      'is_grouped': false,
+      'group_limit': null,
+    },
     'teaser': {
       'row_classes': [
         'column',
@@ -86,6 +96,11 @@
     {% if use_alternating_view_mode %}
       {% set view_mode = (view.rowPlugin.options['alternating_fieldset']['item_' ~ loop.index0] ?? view_mode) %}
     {% endif %}
+    {#
+      Add the previously set grouped_row if:
+      - we've switched view modes or
+      - we've reached the group_limit.
+    #}
     {% set group_limit = view_modes[view_mode]['group_limit'] ?? null %}
     {% set row_classes = view_modes[view_mode]['row_classes'] ?? [] %}
     {% set is_grouped = view_modes[view_mode]['is_grouped'] ?? false %}
