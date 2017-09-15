@@ -1,8 +1,12 @@
 <section class="{{classes|join(' ')}}" style="background-image: url('{{ image_url }}')">
-  <div class="hero-body has-text-centered column is-10">
-    <div class="title has-text-shadow">
-      {{ text }}
+  <div class="hero-body">
+    <div class="container is-fluid">
+      <div class="title has-text-shadow has-text-centered">
+        {{ text }}
+      </div>
+      <div class="is-pulled-right">
+        {{ link }}
+      </div>
     </div>
-    {{ link }}
   </div>
 </section>
