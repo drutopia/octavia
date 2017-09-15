@@ -1,11 +1,12 @@
 {% extends "@stable/views/views-view.html.twig" %}
 {% set style = view.getStyle().getPluginId() %}
-{% set display = view.getDisplay().getPluginId() %}
+{% set default_row_class = view.style_plugin.options.default_row_class %}
 {% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
 {#
-  Only apply to page displays with a selected view mode.
+  Only apply to unformatted (default) displays without a row class and with a
+  selected view mode.
 #}
-{% if (style == 'default') and (display == 'page') and view_mode %}
+{% if (style == 'default') and (not default_row_class) and view_mode %}
   {# Add columns classes to the wrapper. #}
   {%
     set classes = [

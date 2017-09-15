@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .column {
-  &.views-row {
+  &.is-flex-column {
     display: flex;
     flex-direction: column;
     > * {
