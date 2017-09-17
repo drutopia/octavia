@@ -55,13 +55,15 @@
 
                 <div class="kss-modifier kss-modifier-original">
                   <div class="kss-modifier-example">
-                    <section class="" style="background-image: url('')">
+                    <section class="" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url('')">
   <div class="hero-body">
-    <div class="container">
-      <div class="title has-text-shadow">
+    <div class="container is-fluid">
+      <div class="title has-text-centered">
         
       </div>
-      
+      <div class="is-pulled-right">
+        
+      </div>
     </div>
   </div>
 </section>
@@ -71,13 +73,15 @@
                                                 <div class="kss-markup">
                   <button class="js-show-markup">Show Markup Example</button>
                   <template>
-                    <pre><code data-language="html">&lt;section class=&quot;{{classes|join(&#039; &#039;)}}&quot; style=&quot;background-image: url(&#039;{{ image_url }}&#039;)&quot;&gt;
+                    <pre><code data-language="html">&lt;section class=&quot;{{classes|join(&#039; &#039;)}}&quot; style=&quot;background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url(&#039;{{ image_url }}&#039;)&quot;&gt;
   &lt;div class=&quot;hero-body&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
-      &lt;div class=&quot;title has-text-shadow&quot;&gt;
+    &lt;div class=&quot;container is-fluid&quot;&gt;
+      &lt;div class=&quot;title has-text-centered&quot;&gt;
         {{ text }}
       &lt;/div&gt;
-      {{ link }}
+      &lt;div class=&quot;is-pulled-right&quot;&gt;
+        {{ link }}
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
