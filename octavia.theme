@@ -8,6 +8,21 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_library_info_alter().
+ */
+function octavia_library_info_alter(&$libraries, $extension) {
+  if ($extension === 'bulma' && isset($libraries['global'])) {
+    // Since the replaced library files are no longer located in a directory
+    // relative to the original extension, specify an absolute path (relative
+    // to DRUPAL_ROOT / base_path()) to the new location.
+    $css_file = '/' . drupal_get_path('theme', 'octavia') . '/dist/css/bulma.css';
+    $libraries['global']['css']['base'] = [
+      $css_file => [],
+    ];
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function octavia_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
