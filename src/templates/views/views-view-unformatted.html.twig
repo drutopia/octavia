@@ -108,7 +108,8 @@
   }
 %}
 {% set view_modes = view_modes ? default_view_modes|merge(view_modes) : default_view_modes %}
-{% set view_mode = view.rowPlugin.options['view_mode'] ?? false %}
+{% set has_view_mode = view.rowPlugin.options['view_mode'] is defined or view.rowPlugin.options['view_modes'] is defined %}
+{% set view_mode = view.rowPlugin.options['view_mode'] ?? null %}
 {# Add classes to the title, which is often the grouping field title. #}
 {%
   set title_classes = [
@@ -121,7 +122,7 @@
 %}
 {% set title_attributes = create_attribute().addClass(title_classes) %}
 {# Only apply to page displays with a selected view mode. #}
-{% if (not default_row_class) and view_mode %}
+{% if (not default_row_class) and has_view_mode %}
   {# Make the title a full-width column. #}
   {% set title_attributes = title_attributes.addClass(view_modes.__default.row_classes) %}
   {# Determine if we use the alternating view modes. #}
@@ -134,6 +135,10 @@
   {% set previous_view_mode = null %}
   {% set grouped_rows = {} %}
   {% for row in rows %}
+    {# View mode is set per row when the view_modes option is present. #}
+    {% if view.rowPlugin.options['view_modes'] is defined and row.content['#view_mode'] is defined %}
+      {% set view_mode = row.content['#view_mode'] %}
+    {% endif %}
     {% if use_alternating_view_mode %}
       {% set view_mode = (view.rowPlugin.options['alternating_fieldset']['item_' ~ loop.index0] ?? view_mode) %}
     {% endif %}
