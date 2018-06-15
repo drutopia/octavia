@@ -7692,6 +7692,15 @@ label.panel-block {
           width: 128px;
           left: -64px; }
       .timeline .timeline-item .timeline-marker.is-icon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
         height: 1.5em;
         width: 1.5em;
         left: -0.7em;
@@ -7993,6 +8002,26 @@ label.panel-block {
       height: 100%;
       position: absolute;
       top: 0; }
+    .timeline.is-centered .timeline-item.is-white::before {
+      background-color: white; }
+    .timeline.is-centered .timeline-item.is-black::before {
+      background-color: #0a0a0a; }
+    .timeline.is-centered .timeline-item.is-light::before {
+      background-color: whitesmoke; }
+    .timeline.is-centered .timeline-item.is-dark::before {
+      background-color: #363636; }
+    .timeline.is-centered .timeline-item.is-primary::before {
+      background-color: #00d1b2; }
+    .timeline.is-centered .timeline-item.is-link::before {
+      background-color: #3273dc; }
+    .timeline.is-centered .timeline-item.is-info::before {
+      background-color: #209cee; }
+    .timeline.is-centered .timeline-item.is-success::before {
+      background-color: #23d160; }
+    .timeline.is-centered .timeline-item.is-warning::before {
+      background-color: #ffdd57; }
+    .timeline.is-centered .timeline-item.is-danger::before {
+      background-color: #ff3860; }
   .timeline.is-rtl {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
