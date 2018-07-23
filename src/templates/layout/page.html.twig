@@ -1,14 +1,88 @@
 {% extends "@bulma/system/page.html.twig" %}
+
 {#
   Limit the main content column to a max of 10 units at widescreen and above.
   @see system/page.html.twig in the Bulma theme.
 #}
-{%
-  set page = page|merge({
-    'content_attributes': create_attribute().addClass([
-      'main-content',
-      'column',
-      'is-10-widescreen',
-    ]),
-  })
-%}
+{% if not page.content_attributes %}
+  {%
+    set page = page|merge({
+      'content_attributes': create_attribute().addClass([
+        'main-content',
+        'column',
+        'is-10-widescreen',
+      ]),
+    })
+  %}
+{% endif %}
+{% block main %}
+{# Main section #}
+<section class="section">
+  <main role="main" class="container">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {{ page.highlighted }}
+    {{ page.help }}
+
+    <div class="columns is-centered">
+      {% block main_content %}
+      {# Set attributes for content. #}
+      {% if not page.content_attributes %}
+      {%
+        set page = page|merge({
+          'content_attributes': create_attribute().addClass([
+            'main-content',
+            'column',
+          ]),
+        })
+      %}
+      {% endif %}
+      {# Main content #}
+      <div{{page.content_attributes}}>
+        {{ page.content }}
+      </div>
+      {% endblock main_content %}
+      {% block sidebar_first %}
+      {# Sidebar first #}
+      {% if page.sidebar_first %}
+      {# Set attributes for content. #}
+        {% if not page.sidebar_first_attributes %}
+        {%
+          set page = page|merge({
+            'sidebar_first_attributes': create_attribute().addClass([
+              'sidebar-first',
+              'column',
+              'is-2',
+            ]),
+          })
+        %}
+        {% endif %}
+        <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+      {% endblock sidebar_first %}
+      {% block sidebar_second %}
+      {# Sidebar second #}
+      {% if page.sidebar_second %}
+        {% if not page.sidebar_second_attributes %}
+        {%
+          set page = page|merge({
+            'sidebar_second_attributes': create_attribute().addClass([
+              'sidebar-second',
+              'column',
+              'is-2',
+            ]),
+          })
+        %}
+        {% endif %}
+        <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary>
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+      {% endblock sidebar_second %}
+    </div>
+    {{ page.content_bottom }}
+  </main>
+</section>
+{% endblock main %}

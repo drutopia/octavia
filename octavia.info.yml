@@ -15,6 +15,7 @@ regions:
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
+  content_bottom: 'Content bottom'
   sidebar_first: 'Sidebar'
   tile_one: 'Tile 1'
   tile_two: 'Tile 2'
