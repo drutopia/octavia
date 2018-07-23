@@ -1,0 +1,10 @@
+{% extends '@bulma/block/block.html.twig' %}
+{% set view_mode = configuration['view_mode'] ?? null %}
+{% if view_mode is same as('columnar') %}
+  {%
+    set classes = [
+      'column'
+    ]
+  %}
+  {% set attributes = attributes.addClass(classes) %}
+{% endif %}
