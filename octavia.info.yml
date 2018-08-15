@@ -2,7 +2,7 @@ name: Octavia
 description: A theme based on Bulma.
 type: theme
 base theme: bulma
-package: Core
+package: Drutopia
 core: 8.x
 
 regions:
