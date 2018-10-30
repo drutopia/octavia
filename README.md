@@ -71,3 +71,25 @@ Provided by default are seven npm scripts that point to Gulp tasks. We run gulp 
   ```
 
 <!-- writeme -->
+Octavia
+=======
+
+A base theme for the Drutopia distribution based on Bulma.
+
+ * https://gitlab.com/drutopia/octavia
+ * Issues: https://gitlab.com/drutopia/octavia/issues
+ * Source code: https://gitlab.com/drutopia/octavia/tree/8.x-1.x
+ * Keywords: theme, flexbox, bulma, templates, styles, drutopia
+ * Package name: drupal/octavia
+
+
+### Requirements
+
+ * drupal/bulma ^1.0-alpha2
+
+
+### License
+
+GPL-2.0+
+
+<!-- endwriteme -->
