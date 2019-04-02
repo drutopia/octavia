@@ -38,7 +38,6 @@
   ]
 %}
 {% set style = view.getStyle().getPluginId() %}
-{% set default_row_class = view.style_plugin.options.default_row_class %}
 {% set has_view_mode = view.rowPlugin.options['view_mode'] is defined or view.rowPlugin.options['view_modes'] is defined %}
 {#
   Only apply to unformatted (default) displays without a row class and with a
@@ -46,7 +45,7 @@
 #}
 {% set rows_wrapper_attributes = create_attribute() %}
 {% set rows_wrapper_classes = [] %}
-{% if (style == 'default') and (not default_row_class) and has_view_mode %}
+{% if (style == 'default') and has_view_mode %}
   {# Add columns classes to the wrapper. #}
   {%
     set rows_wrapper_classes = [

@@ -122,7 +122,7 @@
 %}
 {% set title_attributes = create_attribute().addClass(title_classes) %}
 {# Only apply to page displays with a selected view mode. #}
-{% if (not default_row_class) and has_view_mode %}
+{% if has_view_mode %}
   {# Make the title a full-width column. #}
   {% set title_attributes = title_attributes.addClass(view_modes.__default.row_classes) %}
   {# Determine if we use the alternating view modes. #}
