@@ -5,6 +5,7 @@
  * Theme functions.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 
@@ -16,10 +17,24 @@ function octavia_library_info_alter(&$libraries, $extension) {
     // Since the replaced library files are no longer located in a directory
     // relative to the original extension, specify an absolute path (relative
     // to DRUPAL_ROOT / base_path()) to the new location.
-    $css_file = '/' . drupal_get_path('theme', 'octavia') . '/dist/css/bulma.css';
+    $css_file = '/' . drupal_get_path('theme', 'octavia') . '/dist/css/modified-bulma.css';
     $libraries['global']['css']['base'] = [
       $css_file => [],
     ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.
+ *
+ * Adds a region to the block content atributes.
+ */
+function octavia_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
+    if ($block = Block::load($block_id)) {
+      $variables['content']['#attributes']['region'] = $block->getRegion();
+    }
   }
 }
 
@@ -35,12 +50,41 @@ function octavia_form_views_exposed_form_alter(&$form, FormStateInterface $form_
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
+ * Implements hook_theme_suggestions_HOOK_alter() for form.
  */
 function octavia_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   $element = $variables['element'];
   if (($element['#form_id'] === 'views_exposed_form') && isset($element['#view_id']) && ($element['#view_id'] === 'search')) {
     $suggestions[] = 'form__views_exposed_form_search';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for menu.
+ *
+ * Adds a template suggestion based on region name.
+ */
+function octavia_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  if (isset($variables['attributes']['region'])) {
+    // Add a theme suggestion for the specific menu in this region.
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['attributes']['region'];
+    // Add a theme suggestion for all menus in in this region.
+    $suggestions[] = 'menu__' . $variables['attributes']['region'];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block.
+ *
+ * Adds a template suggestion based on region name.
+ */
+function octavia_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Region suggestion for blocks in Drupal.
+  if (isset($variables['elements']['#id'])) {
+    if ($block = Block::load($variables["elements"]["#id"])) {
+      $region = $block->getRegion();
+      $suggestions[] = 'block__' . $region;
+    }
   }
 }
 
