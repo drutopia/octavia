@@ -24,6 +24,9 @@ regions:
   tile_five: 'Tile 5'
   bottom: 'Bottom'
   footer: 'Footer'
+  footer_menus: 'Footer menus'
+  footer_info: 'Footer info'
+  footer_notice: 'Footer notice'
 
 libraries:
   - octavia/global
