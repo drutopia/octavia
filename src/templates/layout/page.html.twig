@@ -15,6 +15,18 @@
     })
   %}
 {% endif %}
+{% block navbar %}
+{# Add a new region #}
+{% if page.header_user %}
+<div class="container">
+  <div class="columns">
+    <div class="column"></div>
+    {{ page.header_user }}
+  </div>
+</div>
+{% endif %}
+{{ parent() }}
+{% endblock navbar %}
 {% block main %}
 {# Main section #}
 <section class="section">

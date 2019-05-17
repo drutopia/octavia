@@ -1,8 +1,7 @@
-{% extends "@bulma/navigation/menu--nav-bulma.html.twig" %}
+{% extends "@octavia/navigation/menubar.html.twig" %}
 {%
-  set link_classes = [
-    'button',
-    'is-dark',
-    'is-small',
-  ]
+  set attributes = attributes.addClass([
+    'is-uppercase',
+    'is-size-7',
+  ])
 %}
