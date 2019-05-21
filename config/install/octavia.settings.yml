@@ -21,7 +21,7 @@ breadcrumb:
 tabs:
   position: '0'
   size: '0'
-  style: is-boxed
+  style: is-toggle
   fullwidth: 0
 table:
   bordered: 0
