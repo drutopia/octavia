@@ -25,7 +25,15 @@
 .paragraph {
   margin-bottom: 1.75rem; }
 
-/*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
+.navbar-item .is-pulled-left img {
+  max-height: 4rem; }
+
+input[type="checkbox"], input[type="radio"] {
+  vertical-align: middle;
+  margin-right: 0.333rem; }
+
+
+/*! bulma.io v0.7.5 | MIT License | github.com/jgthms/bulma */
 @-webkit-keyframes spinAround {
   from {
     -webkit-transform: rotate(0deg);
