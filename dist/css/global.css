@@ -27,3 +27,7 @@
 
 .navbar-item .is-pulled-left img {
   max-height: 4rem; }
+
+input[type="checkbox"], input[type="radio"] {
+  vertical-align: middle;
+  margin-right: 0.333rem; }
