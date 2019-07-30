@@ -42,3 +42,5 @@ component-libraries:
       - src/components
       - src/layout
       - src/templates
+      - src/skins
+
