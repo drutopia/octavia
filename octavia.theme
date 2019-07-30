@@ -20,7 +20,7 @@ function octavia_library_info_alter(&$libraries, $extension) {
     $base_path = '/' . drupal_get_path('theme', 'octavia');
     $css_file_path = '/dist/css/modified-bulma.css';
     if (\Drupal::moduleHandler()->moduleExists('skins') && $active_skin = \Drupal::config('octavia.settings')->get('skin')) {
-      $css_file_path = '/skins/' . $active_skin . '/' . $active_skin . '.css';
+      $css_file_path = '/dist/css/' . $active_skin . '.css';
     }
     $libraries['global']['css']['base'] = [
       $base_path . $css_file_path => [],
