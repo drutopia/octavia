@@ -17,9 +17,13 @@ function octavia_library_info_alter(&$libraries, $extension) {
     // Since the replaced library files are no longer located in a directory
     // relative to the original extension, specify an absolute path (relative
     // to DRUPAL_ROOT / base_path()) to the new location.
-    $css_file = '/' . drupal_get_path('theme', 'octavia') . '/dist/css/modified-bulma.css';
+    $base_path = '/' . drupal_get_path('theme', 'octavia');
+    $css_file_path = '/dist/css/modified-bulma.css';
+    if (\Drupal::moduleHandler()->moduleExists('skins') && $active_skin = \Drupal::config('octavia.settings')->get('skin')) {
+      $css_file_path = '/skins/' . $active_skin . '/' . $active_skin . '.css';
+    }
     $libraries['global']['css']['base'] = [
-      $css_file => [],
+      $base_path . $css_file_path => [],
     ];
   }
 }
