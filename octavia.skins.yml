@@ -2,4 +2,8 @@ orangery:
   name: 'Orangery'
   description: 'A bold look featuring deep orange with purple, olive and turquoise accents.'
   screenshot: 'skins/orangery/screenshot.png'
+chocolate:
+  name: 'Chocolate'
+  description: 'An earth toned brown and green skin with a slender headline font.'
+  screenshot: 'skins/chocolate/screenshot.png'
 
