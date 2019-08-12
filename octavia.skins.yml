@@ -10,4 +10,8 @@ orangery:
   name: 'Orangery'
   description: 'A bold look featuring deep orange with purple, olive and turquoise accents.'
   screenshot: 'skins/orangery/screenshot.png'
+spring:
+  name: 'Spring'
+  description: 'Fresh spring colours with purples and green.'
+  screenshot: 'skins/spring/screenshot.png'
 
