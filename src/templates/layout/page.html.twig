@@ -28,38 +28,32 @@
 {{ parent() }}
 {% endblock navbar %}
 {% block header %}
-<section class="hero">
-  {% block header_and_search %}
-  {% if page.header or page.header_search %}
+{% block header_and_search %}
+{% if page.header or page.header_search %}
+<section class="container">
   {# Header hero region + search #}
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-vcentered">
-        <div class="column">
-          {{ page.header }}
-          {% if is_front and site_slogan %}
-            <h1 class="title">{{ site_slogan }}</h1>
-          {% endif %}
-        </div>
-        <div class="column is-narrow">
-          {{ page.header_search }}
-        </div>
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column">
+        {{ page.header }}
+        {% if is_front and site_slogan %}
+          <h1 class="title">{{ site_slogan }}</h1>
+        {% endif %}
+      </div>
+      <div class="column is-narrow">
+        {{ page.header_search }}
       </div>
     </div>
   </div>
-  {% endif %}
-  {% endblock header_and_search %}
-  {% block tabs %}
-  {# Drupal tabs #}
-  {% if page.header_tabs %}
-    <div class="hero-footer">
-      <div class="container">
-        {{ page.header_tabs }}
-      </div>
-    </div>
-  {% endif %}
-  {% endblock tabs %}
 </section>
+{% endif %}
+{% endblock header_and_search %}
+{% block tabs %}
+{# Drupal tabs #}
+{% if page.header_tabs %}
+  {{ page.header_tabs }}
+{% endif %}
+{% endblock tabs %}
 {% endblock header %}
 {% block main %}
 {# Main section #}
