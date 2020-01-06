@@ -870,7 +870,7 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; }
 
 .is-family-secondary {
-  font-family: "Aleo", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; }
+  font-family: "Vollkorn", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; }
 
 .is-family-sans-serif {
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; }
@@ -2914,7 +2914,7 @@ a.tag:hover {
 
 .title {
   color: #0d8cbf;
-  font-family: "Aleo", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "Vollkorn", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 3rem;
   font-weight: 600;
   line-height: 1.125; }
@@ -8588,28 +8588,28 @@ label.panel-block {
 
 /* Regular */
 @font-face {
-  font-family: 'Aleo';
-  src: url("../fonts/Aleo-Regular.otf");
+  font-family: 'Vollkorn';
+  src: url("../fonts/Vollkorn-Regular.otf");
   font-weight: normal;
   font-style: normal; }
 
 /* Italic */
 @font-face {
-  font-family: 'Aleo';
-  src: url("../fonts/Aleo-Italic.otf");
+  font-family: 'Vollkorn';
+  src: url("../fonts/Vollkorn-Italic.otf");
   font-weight: normal;
   font-style: italic; }
 
 /* Bold */
 @font-face {
-  font-family: 'Aleo';
-  src: url("../fonts/Aleo-Bold.otf");
+  font-family: 'Vollkorn';
+  src: url("../fonts/Vollkorn-Bold.otf");
   font-weight: bold;
   font-style: normal; }
 
 /* Bold Italic */
 @font-face {
-  font-family: 'Aleo';
-  src: url("../fonts/Aleo-BoldItalic.otf");
+  font-family: 'Vollkorn';
+  src: url("../fonts/Vollkorn-BoldItalic.otf");
   font-weight: bold;
   font-style: italic; }

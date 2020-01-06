@@ -19,7 +19,7 @@ $red:          #9b1b30;
 $blue:         #0d8cbf;
 $tag-radius: 0;
 
-$family-secondary: "Aleo", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-secondary: "Vollkorn", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $title-strong-weight: 800;
 
 $primary: $blue;
@@ -30,5 +30,5 @@ $title-family: $family-secondary;
 $title-size: 3rem;
 
 @import 'bulma';
-@import 'aleo_font';
+@import 'vollkorn_font';
 
