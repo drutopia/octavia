@@ -18,11 +18,8 @@
 {% block navbar %}
 {# Add a new region #}
 {% if page.header_user %}
-<div class="container">
-  <div class="columns">
-    <div class="column"></div>
-    {{ page.header_user }}
-  </div>
+<div class="container is-flex justify-end">
+  {{ page.header_user }}
 </div>
 {% endif %}
 {{ parent() }}
