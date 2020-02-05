@@ -78,16 +78,17 @@
         <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
 
-  {% if user_picture %}
   <figure class="media-left">
+    <p>{{ author }}</p>
+    <p><small>{{ created }}</small></p>
     {{ user_picture }}
   </figure>
-  {% endif %}
 
   <div class="media-content">
     <div class="content">
-      {{ content }}
-      <small>{{ submitted }}  {{ permalink }}</small>
+      {{ content|without('links') }}
+      <small>{{ permalink }}</small>
+      {{ content.links }}
     </div>
   </div>
 </article>
