@@ -102,3 +102,18 @@ function octavia_preprocess_menu(array &$variables) {
     $variables['items']['views_view:views.search.page_1']['title'] = Markup::create('<span class="icon"><i class="fa fa-search"></i></span>');
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for comment.
+ *
+ * Shortens and stacks username and submitted date.
+ */
+function octavia_preprocess_comment(array &$variables) {
+  $comment = $variables['elements']['#comment'];
+  if (isset($comment->in_preview)) {
+    $variables['permalink_url'] = new Url('<front>');
+  }
+  else {
+    $variables['permalink_url'] = $comment->permalink();
+  }
+}
