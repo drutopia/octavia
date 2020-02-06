@@ -17,12 +17,16 @@
 {% endif %}
 {% block navbar %}
 {# Add a new region #}
+{% block header_user %}
 {% if page.header_user %}
 <div class="container is-flex justify-end">
   {{ page.header_user }}
 </div>
 {% endif %}
+{% endblock header_user %}
+{% block navbar_parent %}
 {{ parent() }}
+{% endblock navbar_parent %}
 {% endblock navbar %}
 {% block header %}
 {% block header_and_search %}
