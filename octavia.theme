@@ -117,3 +117,70 @@ function octavia_preprocess_comment(array &$variables) {
     $variables['permalink_url'] = $comment->permalink();
   }
 }
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ * Styles more link as a button.
+ *
+ * @see @octavia/form/container--more-link--block.html.twig
+ */
+function octavia_element_info_alter(&$type) {
+  if (isset($type['more_link'])) {
+    // Add classes to style the link as a button.
+    // While we could also alter the attributes of the container wrapper here,
+    // for greater flexibility we instead leave that to templates such as
+    // @octavia/form/container--more-link--block.html.twig.
+    $type['more_link']['#attributes']['class'] = [
+      'button',
+      'is-rounded',
+      'is-black',
+    ];
+    // Add our callback to the beginning of the array so it can modify the
+    // $element['#title'] property ahead of core's
+    // \Drupal\Core\Render\Element\MoreLink::preRenderLink(), which sets
+    // $element['#markup'].
+    array_unshift($type['more_link']['#pre_render'], '_octavia_pre_render_more_link');
+  }
+}
+
+/**
+ * Pre-render callback to add an icon to a link element.
+ *
+ * @param array $element
+ *   A structured array whose keys form the arguments to
+ *   \Drupal\Core\Utility\LinkGeneratorInterface::generate():
+ *   - #title: The link text.
+ *   - #url: The URL info either pointing to a route or a non routed path.
+ *   - #options: (optional) An array of options to pass to the link generator.
+ *
+ * @return array
+ *   The passed-in element containing an icon in the #title.
+ */
+function _octavia_pre_render_more_link($element) {
+  $element['#title'] = [
+    'icon' => [
+      'span' => [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#attributes' => [
+          'class' => ['icon'],
+        ],
+        'i' => [
+          '#type' => 'html_tag',
+          '#tag' => 'i',
+          '#attributes' => [
+            'class' => ['fa', 'fa-plus'],
+          ],
+        ],
+      ],
+    ],
+    'title' => [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => $element['#title'],
+    ],
+  ];
+
+  return $element;
+}
