@@ -7,6 +7,7 @@
 
 use Drupal\block\Entity\Block;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Markup;
 
 /**
@@ -183,4 +184,32 @@ function _octavia_pre_render_more_link($element) {
   ];
 
   return $element;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field.
+ *
+ * Resets variables to those of the field value inline template.
+ *
+ * This approach facilitates use of the "title" class on a wrapping element
+ * such as an <h2>.
+ */
+function octavia_preprocess_field(&$variables) {
+  $element = $variables['element'];
+  $field_type = $element['#field_type'];
+  if ($field_type === 'ds') {
+    $view_mode = $element['#ds_view_mode'] ?? $element['#view_mode'];
+    switch ($element['#field_name']) {
+      // Used for media, taxonomy_term, and user entities.
+      case 'name':
+      case 'node_title':
+        if ($children = Element::children($element)) {
+          $key = key($children);
+          $child = $element[$key][0];
+          $variables = $child['#context'];
+          $variables['view_mode'] = $view_mode;
+        }
+        break;
+    }
+  }
 }
