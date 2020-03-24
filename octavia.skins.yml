@@ -18,6 +18,10 @@ orangery:
   name: 'Orangery'
   description: 'A bold look featuring deep orange with purple, olive and turquoise accents.'
   screenshot: 'skins/orangery/screenshot.png'
+radish:
+  name: 'Radish'
+  description: 'A colourful theme with a tall title font.'
+  screenshot: 'skins/radish/screenshot.png'
 spring:
   name: 'Spring'
   description: 'Fresh spring colours with purples and green.'
