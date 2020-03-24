@@ -206,7 +206,7 @@ function octavia_preprocess_field(&$variables) {
         if ($children = Element::children($element)) {
           $key = key($children);
           $child = $element[$key][0];
-          $variables = $child['#context'];
+          $variables = array_merge($variables, $child['#context']);
           $variables['view_mode'] = $view_mode;
         }
         break;
