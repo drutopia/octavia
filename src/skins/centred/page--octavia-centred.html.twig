@@ -1,5 +1,15 @@
 {% extends "@octavia/layout/page.html.twig" %}
-
+{%
+  set site_slogan_attributes = create_attribute().addClass([
+    'subtitle',
+    'is-2',
+    'is-size-3-tablet-only',
+    'is-size-4-mobile',
+    'has-text-centered',
+    'has-padding-left-10-touch',
+    'has-padding-right-10-touch',
+  ])
+%}
 {% block navbar_element %}
 {% block navbar_branding %}
 {% if page.navbar_branding %}
