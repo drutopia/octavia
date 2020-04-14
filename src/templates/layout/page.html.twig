@@ -15,6 +15,21 @@
     })
   %}
 {% endif %}
+{#
+  Allow child templates to pass in site slogan attributes.
+#}
+{% if not site_slogan_attributes %}
+  {%
+    set site_slogan_attributes = create_attribute().addClass([
+      'subtitle',
+      'is-2',
+      'is-size-3-tablet-only',
+      'is-size-4-mobile',
+      'has-padding-left-10-touch',
+      'has-padding-right-10-touch',
+    ])
+  %}
+{% endif %}
 {% block navbar %}
 {# Add a new region #}
 {% block header_user %}
@@ -70,7 +85,7 @@
     <div class="columns is-vcentered">
       <div class="column">
         {% if is_front and site_slogan %}
-          <h2 class="subtitle is-2 is-size-3-tablet-only is-size-4-mobile has-padding-left-10-touch has-padding-right-10-touch">{{ site_slogan }}</h1>
+          <h2{{ site_slogan_attributes }}>{{ site_slogan }}</h1>
         {% endif %}
         {{ page.header }}
       </div>
