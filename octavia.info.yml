@@ -44,3 +44,5 @@ component-libraries:
       - src/templates
       - src/skins
 
+dependencies:
+  - twigsuggest
