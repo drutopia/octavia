@@ -44,5 +44,6 @@ component-libraries:
       - src/templates
       - src/skins
 
-dependencies:
-  - twigsuggest
+# This silently breaks things until themes can rely on modules in Drupal 8.9+
+# dependencies:
+#   - twigsuggest
