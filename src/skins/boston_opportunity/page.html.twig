@@ -1,0 +1,173 @@
+{% extends "@octavia/layout/page.html.twig" %}
+
+{% block navbar %}
+{% if page.navbar_branding or page.navbar_social or page.primary_menu %}
+{# Top navbar #}
+<div class="is-fixed">
+  <nav id="navbar" class="navbar">
+    <div class="navbar-brand">
+      {% if page.navbar_branding %}
+      {# TODO: remove this link if is_front and *probably* add visually-hidden h1
+         with "agaric", again only on the front page, and only if we can't put our
+         name in an h1 on the front page in some other way. #}
+      <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home me" class="h-card fn org navbar-item">
+      {{ page.navbar_branding }}
+      </a>
+      {% endif %}
+      <div class="navbar-burger burger" data-target="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbar-menu" class="navbar-menu">
+      {% if page.navbar_social %}
+      <div class="navbar-start">
+      {{ page.navbar_social }}
+      </div>
+      {% endif %}
+      {% if page.primary_menu %}
+      {{ page.primary_menu }}
+      {% endif %}
+    </div>
+  </nav>
+</div>
+{% endif %}
+{{ page.help }}
+{% endblock navbar %}
+
+{% set header_section_attributes = create_attribute() %}
+{% if not node %}
+  {% set header_section_attributes = header_section_attributes.addClass(['hero']).setAttribute('data-headerbg', 'dark') %}
+{% endif %}
+
+{# We do not want the secondary menu printed where Bulma's page.html.twig prints
+   it; we want it with the header section which may be printed in node content.
+   To make that possible the regionincontent module is used; but all that is
+   handled elsewhere (including immediately below); here we just blank it out. #}
+{% block secondary_menu %}
+{% endblock secondary_menu %}
+
+{% block header %}
+{# We've moved the header section to the content level for nodes. #}
+{% if not node %}
+<section{{ header_section_attributes }}>
+  {% block header_title %}
+  {% if page.header %}
+  {# Header hero region #}
+  <div class="hero-body">
+    <div class="container">
+      {% if is_front and site_slogan %}
+        <h1 class="title is-2">{{ site_slogan }}</h1>
+      {% else %}
+        <div class="titlebar">
+          {{ page.header }}
+          {% if page.secondary_menu or page.header_search %}
+            <div class="titlebar_links">
+              {{ page.secondary_menu }}
+              {{ page.header_search }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% endblock header_title %}
+</section>
+{% endif %}
+
+  {% block tabs %}
+  {# Drupal tabs #}
+  {% if page.header_tabs %}
+    <div class="floating-tabs">
+      {{ page.header_tabs }}
+    </div>
+  {% endif %}
+  {% endblock tabs %}
+{% endblock header %}
+
+
+{% block main %}
+{# Main section #}
+{# Only group the main content into one wrapping element if it needs to be
+   separated from a sidebar or two. #}
+{% set has_columns=false %}
+{% if page.sidebar_first or page.sidebar_second %}
+  {% set has_columns=true %}
+{% endif %}
+{% if has_columns %}
+<section class="section">
+  <main role="main" class="container">
+{% endif %}
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {{ page.highlighted }}
+
+    {% block main_content %}
+    {# Set attributes for content. #}
+    {% if not page.content_attributes %}
+    {%
+      set page = page|merge({
+        'content_attributes': create_attribute().addClass([
+          'main-content',
+        ]),
+      })
+    %}
+    {% endif %}
+    {% if has_columns %}
+      <div{{page.content_attributes }}>
+    {% endif %}
+    {# Main content #}
+      {{ page.content }}
+    {% if has_columns %}
+      </div>
+    {% endif %}
+    {% endblock main_content %}
+    {% block sidebar_first %}
+    {# Sidebar first #}
+    {% if page.sidebar_first %}
+    {# Set attributes for content. #}
+      {% if not page.sidebar_first_attributes %}
+      {%
+        set page = page|merge({
+          'sidebar_first_attributes': create_attribute().addClass([
+            'sidebar-first',
+            'column',
+            'is-2',
+          ]),
+        })
+      %}
+      {% endif %}
+      <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
+        {{ page.sidebar_first }}
+      </aside>
+    {% endif %}
+    {% endblock sidebar_first %}
+    {% block sidebar_second %}
+    {# Sidebar second #}
+    {% if page.sidebar_second %}
+      {% if not page.sidebar_second_attributes %}
+      {%
+        set page = page|merge({
+          'sidebar_second_attributes': create_attribute().addClass([
+            'sidebar-second',
+            'column',
+            'is-2',
+          ]),
+        })
+      %}
+      {% endif %}
+      <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+      {% endblock sidebar_second %}
+
+{{ page.content_bottom }}
+
+{% if page.sidebar_first or page.sidebar_second %}
+  </main>
+</section>
+{% endif %}
+{% endblock main %}
