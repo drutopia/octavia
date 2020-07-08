@@ -26,7 +26,3 @@ spring:
   name: 'Spring'
   description: 'Fresh spring colours with purples and green.'
   screenshot: 'skins/spring/screenshot.png'
-boston_opportunity:
-  name: 'Boston Opportunity'
-  description: "EXPERIMENTAL: A theme being developed for Boston Public Schools' Office of Opportunity Gaps, featuring a full-width title paragraph."
-  screenshot: 'skins/boston_opportunity/screenshot.png'
