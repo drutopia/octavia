@@ -3,7 +3,7 @@
     "description": "A base theme for the Drutopia distribution based on Bulma.",
     "keywords": ["theme", "flexbox", "bulma", "templates", "styles", "drutopia"],
     "type": "drupal-theme",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "homepage": "https://gitlab.com/drutopia/octavia",
     "support": {
         "issues": "https://gitlab.com/drutopia/octavia/issues",
@@ -11,8 +11,9 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "drupal/bulma": "^1.0-beta4",
-        "drupal/skins": "^1.0-alpha4",
-        "drupal/twigsuggest": "^1.0-beta1"
+        "drupal/bulma": "^1.0-rc1",
+        "drupal/components": "^2.0-beta3"
+        "drupal/skins": "^1.0-rc1",
+        "drupal/twigsuggest": "^1.0-beta2"
     }
 }

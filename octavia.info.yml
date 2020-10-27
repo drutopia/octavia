@@ -5,6 +5,10 @@ base theme: bulma
 package: Drutopia
 core: 8.x
 core_version_requirement: ^8 || ^9
+dependencies:
+  - components:components (>=8.x-2.x)
+  - skins:skins
+  - twigsuggest:twigsuggest
 
 regions:
   header_user: 'User'
